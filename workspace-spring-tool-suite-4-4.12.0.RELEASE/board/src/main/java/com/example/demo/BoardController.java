@@ -60,11 +60,19 @@ public class BoardController {
 	}
 
 	@PostMapping("/create")
+	@Transactional(readOnly=false)
 	public ModelAndView create(
 			@ModelAttribute("formModel") Board board
 			) {
 		board.setUpsert(new Date());
 		repos.saveAndFlush(board);
+		return new ModelAndView("redirect:/");
+	}
+	
+	@PostMapping("/delete")
+	@Transactional(readOnly=false)
+	public ModelAndView delete(@RequestParam int id) {
+		repos.deleteById(id);
 		return new ModelAndView("redirect:/");
 	}
 	
