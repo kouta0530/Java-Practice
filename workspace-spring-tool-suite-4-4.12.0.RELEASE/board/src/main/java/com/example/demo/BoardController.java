@@ -50,6 +50,15 @@ public class BoardController {
 		return mav;
 	}
 	
+	@PostMapping("/create")
+	public ModelAndView create(
+			@ModelAttribute("formModel") Board board
+			) {
+		board.setUpsert(new Date());
+		repos.saveAndFlush(board);
+		return new ModelAndView("redirect:/");
+	}
+	
 	@PostConstruct 
 	public void init() {
 		Board board1 = new Board();
