@@ -41,6 +41,15 @@ public class BoardController {
 		return mav;
 	}
 	
+	@GetMapping("/add")
+	public ModelAndView add() {
+		ModelAndView mav = new ModelAndView();
+		Board board = new Board();
+		mav.setViewName("board/edit");
+		mav.addObject("formModel", board);
+		return mav;
+	}
+	
 	@PostConstruct 
 	public void init() {
 		Board board1 = new Board();
