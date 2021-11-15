@@ -50,6 +50,15 @@ public class BoardController {
 		return mav;
 	}
 	
+	@GetMapping("edit")
+	public ModelAndView edit(@RequestParam int id){
+		ModelAndView mav = new ModelAndView();
+		Board board = repos.findById(id);
+		mav.setViewName("board/edit");
+		mav.addObject("formModel", board);
+		return mav;
+	}
+
 	@PostMapping("/create")
 	public ModelAndView create(
 			@ModelAttribute("formModel") Board board
