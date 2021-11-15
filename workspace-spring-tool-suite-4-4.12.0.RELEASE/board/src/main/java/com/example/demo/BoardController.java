@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,6 +29,15 @@ public class BoardController {
 		
 		mav.setViewName("board/list");
 		mav.addObject("data",list);
+		return mav;
+	}
+	
+	@GetMapping("/detail")
+	public ModelAndView detail(@RequestParam int id) {
+		ModelAndView mav = new ModelAndView();
+		Board board = repos.findById(id);
+		mav.setViewName("board/detail");
+		mav.addObject("board",board);
 		return mav;
 	}
 	
