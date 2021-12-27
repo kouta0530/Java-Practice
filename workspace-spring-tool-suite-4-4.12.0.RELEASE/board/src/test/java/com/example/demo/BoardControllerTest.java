@@ -21,4 +21,9 @@ public class BoardControllerTest {
 	public void returnMessageFromBoardController() throws Exception {
 		this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk());
 	}
+
+	@Test
+	public void getMessageAddPage() throws Exception {
+		this.mockMvc.perform(get("/add")).andDo(print()).andExpect(status().isOk());
+	}
 }
