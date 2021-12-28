@@ -26,4 +26,9 @@ public class BoardControllerTest {
 	public void getMessageAddPage() throws Exception {
 		this.mockMvc.perform(get("/add")).andDo(print()).andExpect(status().isOk());
 	}
+
+	@Test
+	public void editCreatedPage() throws Exception {
+		this.mockMvc.perform(get("/edit").param("id", "1")).andExpect(status().isOk());
+	}
 }
