@@ -6,6 +6,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,6 +30,8 @@ public class BoardControllerTest {
 
 	@Test
 	public void editCreatedPage() throws Exception {
-		this.mockMvc.perform(get("/edit").param("id", "1")).andExpect(status().isOk());
+		this.mockMvc.perform(get("/edit").param("id", "1"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("board/edit"));
 	}
 }
