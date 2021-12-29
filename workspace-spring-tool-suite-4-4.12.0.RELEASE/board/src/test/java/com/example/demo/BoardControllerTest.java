@@ -7,6 +7,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.hamcrest.Matchers.containsString;
 
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -32,6 +34,9 @@ public class BoardControllerTest {
 	public void editCreatedPage() throws Exception {
 		this.mockMvc.perform(get("/edit").param("id", "1"))
 				.andExpect(status().isOk())
-				.andExpect(view().name("board/edit"));
+				.andExpect(view().name("board/edit"))
+				.andExpect(content().string(containsString("帰社日について")))
+				.andExpect(content().string(containsString("島根")))
+				.andExpect(content().string(containsString("帰社日は以下の通りに決定しました。2018/01/11")));
 	}
 }
