@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 import java.util.Date;
 
@@ -53,6 +54,7 @@ public class BoardControllerTest {
 		board.setUpsert(new Date());
 		board.setWriter("test");
 		board.setContent("create test board");
-		this.mockMvc.perform(post("/create").flashAttr("formModel", board));
+		this.mockMvc.perform(post("/create").flashAttr("formModel", board))
+			.andExpect(redirectedUrl("/"));
 	}
 }
