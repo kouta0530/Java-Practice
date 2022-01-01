@@ -53,6 +53,6 @@ public class BoardControllerTest {
 		board.setUpsert(new Date());
 		board.setWriter("test");
 		board.setContent("create test board");
-		// this.mockMvc.perform(post("/create").content());
+		this.mockMvc.perform(post("/create").flashAttr("formModel", board));
 	}
 }
