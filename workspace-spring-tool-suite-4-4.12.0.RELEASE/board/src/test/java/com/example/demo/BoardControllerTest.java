@@ -29,12 +29,12 @@ public class BoardControllerTest {
 
 	@Test
 	public void returnMessageFromBoardController() throws Exception {
-		this.mockMvc.perform(get("/")).andDo(print()).andExpect(status().isOk());
+		this.mockMvc.perform(get("/")).andExpect(status().isOk());
 	}
 
 	@Test
 	public void getMessageAddPage() throws Exception {
-		this.mockMvc.perform(get("/add")).andDo(print()).andExpect(status().isOk());
+		this.mockMvc.perform(get("/add")).andExpect(status().isOk());
 	}
 
 	@Test
@@ -55,6 +55,6 @@ public class BoardControllerTest {
 		board.setWriter("test");
 		board.setContent("create test board");
 		this.mockMvc.perform(post("/create").flashAttr("formModel", board))
-			.andExpect(redirectedUrl("/"));
+				.andExpect(redirectedUrl("/"));
 	}
 }
