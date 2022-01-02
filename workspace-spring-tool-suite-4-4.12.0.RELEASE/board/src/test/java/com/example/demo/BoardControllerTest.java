@@ -56,5 +56,7 @@ public class BoardControllerTest {
 		board.setContent("create test board");
 		this.mockMvc.perform(post("/create").flashAttr("formModel", board))
 				.andExpect(redirectedUrl("/"));
+
+		this.mockMvc.perform(get("/")).andExpect(content().string(containsString("testBoard")));
 	}
 }
