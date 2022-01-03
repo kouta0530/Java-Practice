@@ -8,7 +8,10 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+
+import static org.hamcrest.Matchers.hasSize;
 
 import java.util.Date;
 
@@ -58,5 +61,15 @@ public class BoardControllerTest {
 				.andExpect(redirectedUrl("/"));
 
 		this.mockMvc.perform(get("/")).andExpect(content().string(containsString("testBoard")));
+	}
+
+	@Test
+	public void deleteBoard() throws Exception {
+		this.mockMvc.perform(post("/delete").param("id", "3"))
+				.andExpect(status().is3xxRedirection())
+				.andExpect(redirectedUrl("/"));
+
+		this.mockMvc.perform(get("/"))
+				.andExpect(model().attribute("data", hasSize(2)));
 	}
 }
