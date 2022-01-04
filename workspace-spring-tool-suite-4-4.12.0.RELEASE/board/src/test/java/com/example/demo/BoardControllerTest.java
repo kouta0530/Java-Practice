@@ -41,6 +41,16 @@ public class BoardControllerTest {
 	}
 
 	@Test
+	public void getCreatedBoardDetail() throws Exception {
+		this.mockMvc.perform(get("/detail").param("id", "1"))
+				.andExpect(status().isOk())
+				.andExpect(view().name("board/detail"))
+				.andExpect(content().string(containsString("帰社日について")))
+				.andExpect(content().string(containsString("島根")))
+				.andExpect(content().string(containsString("帰社日は以下の通りに決定しました。2018/01/11")));
+	}
+
+	@Test
 	public void editCreatedPage() throws Exception {
 		this.mockMvc.perform(get("/edit").param("id", "1"))
 				.andExpect(status().isOk())
