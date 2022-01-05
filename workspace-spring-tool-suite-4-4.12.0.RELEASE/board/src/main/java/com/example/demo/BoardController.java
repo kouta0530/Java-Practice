@@ -89,7 +89,7 @@ public class BoardController {
 		board2.setTitle("新入社員歓迎会のおしらせ");
 		board2.setUpsert(new Date());
 		board2.setWriter("島根");
-		board2.setContent("");
+		board2.setContent("あたらしく新入社員が入りました");
 		repos.saveAndFlush(board2);
 	}
 }
