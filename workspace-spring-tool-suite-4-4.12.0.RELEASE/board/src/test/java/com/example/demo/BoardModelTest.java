@@ -33,4 +33,11 @@ public class BoardModelTest {
     Set<ConstraintViolation<Board>> violations = this.validator.validateProperty(board, "title");
     assertEquals("255文字以内で入力してください", violations.iterator().next().getMessage());
   }
+
+  @Test
+  public void BoardContentEmpty() {
+    Board board = new Board();
+    Set<ConstraintViolation<Board>> violations = this.validator.validateProperty(board, "content");
+    assertEquals("本文を記載してください", violations.iterator().next().getMessage());
+  }
 }
