@@ -38,6 +38,16 @@ public class BoardModelTest {
   public void BoardContentEmpty() {
     Board board = new Board();
     Set<ConstraintViolation<Board>> violations = this.validator.validateProperty(board, "content");
-    assertEquals("本文を記載してください", violations.iterator().next().getMessage());
+    assertEquals("空白だけの記事は投稿できません", violations.iterator().next().getMessage());
   }
+
+  @Test
+  public void BoardContentSpaceOnly() {
+    Board board = new Board();
+    board.setContent("\n");
+    Set<ConstraintViolation<Board>> violations = this.validator.validateProperty(board, "content");
+    assertEquals("空白だけの記事は投稿できません", violations.iterator().next().getMessage());
+
+  }
+
 }
