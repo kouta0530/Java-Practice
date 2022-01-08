@@ -10,8 +10,10 @@ import javax.persistence.GenerationType;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import javax.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "board")
@@ -23,11 +25,12 @@ public class Board {
 	@Column
 	private Date upsert;
 	@Column
-	@NotEmpty(message="タイトルを入力してください")
-	@Size(max=255,message="255文字以内で入力してください")
+	@NotEmpty(message = "タイトルを入力してください")
+	@Size(max = 255, message = "255文字以内で入力してください")
 	private String title;
 	@Column
-	@NotEmpty(message="本文を記載してください")
+	@NotEmpty(message = "本文を記載してください")
+	@NotBlank(message = "空白だけの記事は投稿できません")
 	private String content;
 	@Column
 	private String writer;
