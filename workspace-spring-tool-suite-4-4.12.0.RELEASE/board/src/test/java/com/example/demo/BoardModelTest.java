@@ -19,35 +19,26 @@ public class BoardModelTest {
   @Autowired
   private Validator validator;
 
+  Board board = new Board();
+
   @Test
   public void BoardTitleValidationTest() {
-    Board board = new Board();
     Set<ConstraintViolation<Board>> violations = this.validator.validateProperty(board, "title");
     assertThat(violations).hasSize(1);
   }
 
   @Test
   public void BoardTitleMoreThanMaxSize() {
-    Board board = new Board();
     board.setTitle(StringUtils.repeat("a", 256));
     Set<ConstraintViolation<Board>> violations = this.validator.validateProperty(board, "title");
     assertEquals("255文字以内で入力してください", violations.iterator().next().getMessage());
   }
 
   @Test
-  public void BoardContentEmpty() {
-    Board board = new Board();
-    Set<ConstraintViolation<Board>> violations = this.validator.validateProperty(board, "content");
-    assertEquals("空白だけの記事は投稿できません", violations.iterator().next().getMessage());
-  }
-
-  @Test
   public void BoardContentSpaceOnly() {
-    Board board = new Board();
     board.setContent("\n");
     Set<ConstraintViolation<Board>> violations = this.validator.validateProperty(board, "content");
     assertEquals("空白だけの記事は投稿できません", violations.iterator().next().getMessage());
-
   }
 
 }
