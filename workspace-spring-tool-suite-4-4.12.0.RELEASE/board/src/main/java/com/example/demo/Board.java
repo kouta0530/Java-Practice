@@ -29,7 +29,6 @@ public class Board {
 	@Size(max = 255, message = "255文字以内で入力してください")
 	private String title;
 	@Column
-	@NotEmpty(message = "本文を記載してください")
 	@NotBlank(message = "空白だけの記事は投稿できません")
 	private String content;
 	@Column
