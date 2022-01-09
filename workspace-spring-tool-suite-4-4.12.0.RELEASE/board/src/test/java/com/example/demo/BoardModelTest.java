@@ -36,9 +36,13 @@ public class BoardModelTest {
 
   @Test
   public void BoardContentSpaceOnly() {
-    board.setContent("\n");
-    Set<ConstraintViolation<Board>> violations = this.validator.validateProperty(board, "content");
-    assertEquals("空白だけの記事は投稿できません", violations.iterator().next().getMessage());
+    String[] emptyStrings = { "", " ", "\n", "\t", "\n\t " };
+
+    for (String e : emptyStrings) {
+      board.setContent(e);
+      Set<ConstraintViolation<Board>> violations = this.validator.validateProperty(board, "content");
+      assertEquals("空白だけの記事は投稿できません", violations.iterator().next().getMessage());
+    }
   }
 
 }
