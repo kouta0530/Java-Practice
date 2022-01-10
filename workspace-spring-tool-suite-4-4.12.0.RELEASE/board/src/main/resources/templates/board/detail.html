@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Detail Board</title>
+	<style>
+	table {
+	  border-collapse: collapse;
+	}
+	.col_name {width:200px;}
+	.col_data {width:400px;}
+	form {display: inline;}
+	</style>
+</head>
+<body>
+	<h1>掲示板</h1>
+	<table border="1" th:object="${board}">
+	  <tr>
+	      <th class="col_name">作成日</th>
+	      <td class="col_data">
+	        <p th:text="*{upsert}" size="20"/>
+	      </td>
+	  </tr>
+	  <tr>
+	      <th>タイトル</th>
+	      <td>
+	        <p th:text="*{title}" />
+	      </td>
+	  </tr>
+	  <tr>
+	      <th>内容</th>
+	      <td>
+	        <p th:text="*{content}" />
+	      </td>
+	  </tr>
+	  	  <tr>
+	      <th>投稿者</th>
+	      <td>
+	        <p th:text="*{writer}"/>
+	      </td>
+	  </tr>
+	</table>
+	<hr>
+	<form action="/" method="GET">
+		<input type="submit" value="戻る">
+	</form>
+</body>
+</html>
