@@ -9,4 +9,5 @@ services:
       - MYSQL_USER=springuser
       - MYSQL_PASSWORD=ThePassword
       - MYSQL_ROOT_PASSWORD=TestRootPassword
-    
+    volumes:
+      - ./mysql/config/my.cnf:/etc/mysql/conf.d/my.cnf
